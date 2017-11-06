@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/splash_png"
+    android:layout_height="match_parent"
+    android:id="@+id/lin_lay"
+    android:gravity="center"
+    tools:context="com.example.puthirin.library.SplashScreenActivity">
+    <ImageView
+        android:layout_width="260dp"
+        android:layout_height="160dp"
+        android:id="@+id/splash"
+        android:background="@drawable/popup_png" />
+</LinearLayout>

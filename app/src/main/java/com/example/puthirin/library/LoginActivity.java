@@ -9,15 +9,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
@@ -26,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button login,register;
     Intent intent;
     EditText email, password;
-    String Url="http://192.168.0.118:8000/user_login";
+    String Url="http://192.168.0.110:8000/user_login";
     private static final String TAG = "Login";
     ProgressDialog progressDialog;
 
@@ -60,31 +65,34 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    private void loginUser(String email,String password) {
+    private void loginUser(final String email, final String password) {
         progressDialog.setMessage("Successful");
         showDialog();
-        JSONObject params = new JSONObject();
-        try {
-
-            params.put("email",email);
-            params.put("password",password);
-        }catch (JSONException e){
-
-        }
-
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, Url, params, new Response.Listener<JSONObject>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Url, new Response.Listener<String>() {
+
             @Override
-            public void onResponse(JSONObject jsonObject) {
-                Toast.makeText(LoginActivity.this, "gg", Toast.LENGTH_SHORT).show();
+            public void onResponse(String s) {
+                Toast.makeText(LoginActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(LoginActivity.this, volleyError.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this,volleyError.toString(), Toast.LENGTH_SHORT).show();
             }
-        });
-        queue.add(request);
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String>  params = new HashMap<String, String>();
+                params.put("email",email);
+                params.put("password",password);
+
+                return params;
+            }
+        };
+        queue.add(stringRequest);
     }
 
     private void hideDialog() {

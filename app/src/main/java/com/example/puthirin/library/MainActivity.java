@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String url = "http://192.168.100.105:8000/book_get";
+        String URL_get = "192.168.100.111:8000/book_get";
         Intent intent = getIntent();
 //        textView.setText("Hello"+intent.getStringExtra(Login.EMAIL));
 
@@ -88,34 +89,24 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.content_main,null);
+        text1 =(TextView) view.findViewById(R.id.text3);
+        text2 = (TextView) view.findViewById(R.id.text4);
+        text3 = (TextView) view.findViewById(R.id.text5);
+        text4 = (TextView) view.findViewById(R.id.text6);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        StringRequest request = new StringRequest(Request.Method.GET, URL_get, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject jsonObject) {
-                try {
-                    JSONArray jsonArray = jsonObject.getJSONArray("data");
-                    for (int i = jsonArray.length()-1;i>=0; i--){
-                       if (i==jsonArray.length()-1){
-                           text1.setText(jsonArray.getJSONObject(i).getString("title"));
-                       }else if (i==jsonArray.length()-2){
-                           text2.setText(jsonArray.getJSONObject(i).getString("title"));
-                       }else if (i==jsonArray.length()-3){
-                           text3.setText(jsonArray.getJSONObject(i).getString("title"));
-                       }else if (i==jsonArray.length()-4){
-                           text4.setText(jsonArray.getJSONObject(i).getString("title"));
-                       }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            public void onResponse(String s) {
+                Toast.makeText(MainActivity.this, "gg", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-
+                Toast.makeText(MainActivity.this, volleyError.toString(), Toast.LENGTH_SHORT).show();
             }
         });
-        requestQueue.add(jsonObjectRequest);
+        requestQueue.add(request);
     }
 
     @Override

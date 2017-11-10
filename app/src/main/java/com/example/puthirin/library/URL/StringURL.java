@@ -5,6 +5,6 @@ package com.example.puthirin.library.URL;
  */
 
 public class StringURL {
-    public String URL="http://192.168.0.110:8000";
-    public String Library_url=URL+"";
+    public final static String URL="http://192.168.0.110:8000";
+    public final static String Library_url=URL+"";
 }

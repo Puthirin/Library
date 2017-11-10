@@ -9,8 +9,28 @@ class Books {
     private String title;
     private String author;
     private String description;
+    private String year;
 
-    public Books(int imageId, String title, String description) {
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getCategory() {
+
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    private String category;
+
+    public Books(int imageId, String string, String category, String title, String description) {
         this.imageId = imageId;
         this.title = title;
         this.description = description;
@@ -55,4 +75,6 @@ class Books {
         this.author = author;
         this.description = description;
     }
+
+
 }

@@ -24,7 +24,10 @@
             android:name=".SplashScreenActivity"
             android:label="Home" />
         <activity android:name=".BookDetailActivity" />
-        <activity android:name=".NewBookActivity"></activity>
+        <activity android:name=".ListBooksActivity"
+            android:label="List Book"
+            />
+
     </application>
 
 </manifest>

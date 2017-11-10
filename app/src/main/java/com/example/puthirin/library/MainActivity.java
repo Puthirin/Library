@@ -2,6 +2,7 @@ package com.example.puthirin.library;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
@@ -26,6 +27,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -38,14 +40,14 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    TextView text1,text2,text3,text4;
+    TextView text1,text2,text3,text4,more;
     LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String URL_get = "192.168.100.111:8000/book_get";
+        final String URL_get = "http://192.168.100.105:8000/book_get";
         Intent intent = getIntent();
 //        textView.setText("Hello"+intent.getStringExtra(Login.EMAIL));
 
@@ -89,16 +91,47 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.content_main,null);
-        text1 =(TextView) view.findViewById(R.id.text3);
-        text2 = (TextView) view.findViewById(R.id.text4);
-        text3 = (TextView) view.findViewById(R.id.text5);
-        text4 = (TextView) view.findViewById(R.id.text6);
+        more = (TextView) findViewById(R.id.new_more);
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(MainActivity.this,ListBooksActivity.class);
+                startActivity(intent2);
+            }
+        });
+
+        text1 =(TextView) findViewById(R.id.text3);
+        text2 = (TextView) findViewById(R.id.text4);
+        text3 = (TextView) findViewById(R.id.text5);
+        text4 = (TextView) findViewById(R.id.text6);
         RequestQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest request = new StringRequest(Request.Method.GET, URL_get, new Response.Listener<String>() {
+        final StringRequest request = new StringRequest(Request.Method.GET, URL_get,new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 Toast.makeText(MainActivity.this, "gg", Toast.LENGTH_SHORT).show();
+                try {
+                    JSONObject obj = new JSONObject(s);
+                    JSONArray  array =  obj.getJSONArray("data");
+
+                    for (int i= array.length()-1 ; i>= 0;i--){
+                        if (i==array.length()-1){
+                            text1.setText(array.getJSONObject(i).getString("title"));
+                        }
+                        if (i==array.length()-2){
+                            text2.setText(array.getJSONObject(i).getString("title"));
+                        }
+                        if (i==array.length()-3){
+                            text3.setText(array.getJSONObject(i).getString("title"));
+                        }
+                        if (i==array.length()-4){
+                            text4.setText(array.getJSONObject(i).getString("title"));
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -107,6 +140,8 @@ public class MainActivity extends AppCompatActivity
             }
         });
         requestQueue.add(request);
+
+
     }
 
     @Override

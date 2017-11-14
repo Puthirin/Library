@@ -49,8 +49,12 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+<<<<<<< HEAD
         final String URL_get = "http://192.168.100.105:8000/book_get";
         final String URL_borrow = "http://192.168.100.105:800/borrow";
+=======
+        final String URL_get = "http://192.168.0.117:8000/book_get";
+>>>>>>> 7201df5993d3dd4d0c60e1df9668df6470aa4135
         Intent intent = getIntent();
 //        textView.setText("Hello"+intent.getStringExtra(Login.EMAIL));
 

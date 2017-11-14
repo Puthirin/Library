@@ -52,17 +52,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/title_d"
-            android:layout_marginTop="20dp"
+
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/author_d"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="40dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="70dp"
             android:id="@+id/type_d"/>
     </LinearLayout>
     <TextView

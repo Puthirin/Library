@@ -94,27 +94,32 @@
         android:layout_marginTop="200dp">
         <TextView
             android:id="@+id/text3"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:text="hi"
+            android:layout_marginLeft="10dp"
 
             />
         <TextView
             android:id="@+id/text4"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:text="Hi"
            />
         <TextView
             android:id="@+id/text5"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-
+            android:text="hi"
+            android:layout_marginLeft="10dp"
             />
         <TextView
             android:id="@+id/text6"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
+            android:text="hi"
 
             />
 

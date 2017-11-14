@@ -1,5 +1,6 @@
 package com.example.puthirin.library;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import java.lang.reflect.Method;
 public class BookDetailActivity extends AppCompatActivity {
     TextView title,author,type,description;
     final static String URL_detail="http://192.168.100.105:8000/book_get";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,23 +33,28 @@ public class BookDetailActivity extends AppCompatActivity {
         author=(TextView) findViewById(R.id.author_d);
         type = (TextView) findViewById(R.id.type_d);
         description = (TextView) findViewById(R.id.text_dis);
-        RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest request = new StringRequest(Request.Method.GET, URL_detail, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String s) {
-                try {
-                    JSONObject object = new JSONObject(s);
-                    JSONArray array = object.getJSONArray("data");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
 
-            }
-        });
+        title.setText(bundle.getString("title"));
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        StringRequest request = new StringRequest(Request.Method.GET, URL_detail, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String s) {
+//                try {
+//                    JSONObject object = new JSONObject(s);
+//                    JSONArray array = object.getJSONArray("data");
+//                    title.setText(Bundle);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError volleyError) {
+//
+//            }
+//        });
 
 
     }

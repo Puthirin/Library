@@ -1,6 +1,7 @@
 package com.example.puthirin.library;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
@@ -31,6 +32,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,12 +44,13 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     TextView text1,text2,text3,text4,more;
     LinearLayout linearLayout;
-
+    MaterialSearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final String URL_get = "http://192.168.100.105:8000/book_get";
+        final String URL_borrow = "http://192.168.100.105:800/borrow";
         Intent intent = getIntent();
 //        textView.setText("Hello"+intent.getStringExtra(Login.EMAIL));
 
@@ -79,6 +82,9 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Search Book");
+
+        toolbar.setTitleTextColor(Color.parseColor("#fffff"));
 
 
 
@@ -141,7 +147,23 @@ public class MainActivity extends AppCompatActivity
         });
         requestQueue.add(request);
 
+        final StringRequest requestBorrow = new StringRequest(Request.Method.GET, URL_borrow, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                try {
+                    JSONObject object = new JSONObject(s);
+                    JSONArray array = object.getJSONArray("data");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+
+            }
+        });
     }
 
     @Override

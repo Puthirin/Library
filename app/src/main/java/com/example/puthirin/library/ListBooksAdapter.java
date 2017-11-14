@@ -2,6 +2,7 @@ package com.example.puthirin.library;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,7 @@ public class ListBooksAdapter extends RecyclerView.Adapter<ListBooksAdapter.Book
         final Books book = books.get(position);
         holder.bookCover.setImageResource(R.drawable.book);
         holder.bookTitle.setText(book.getTitle());
+        holder.bookTitle.setBackgroundResource(R.drawable.description);
 
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,6 +1,7 @@
 package com.example.puthirin.library;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +23,7 @@ import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
 
 public class RegisterActivity extends AppCompatActivity {
     private  static final String TAG = "Register";
-    String Url = "http://192.168.0.113:8000/user_register";
+    String Url = "http://192.168.100.105:8000/user_register";
     ProgressDialog progressDialog;
     private EditText firstname, lastname,tel,email, password;
     private Button Register;
@@ -75,7 +76,8 @@ public class RegisterActivity extends AppCompatActivity {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, Url, params, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
-                Toast.makeText(RegisterActivity.this, "gg", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Successful", Toast.LENGTH_SHORT).show();
+                Intent home = new Intent(getApplicationContext(), LoginActivity.class);
             }
         }, new Response.ErrorListener() {
             @Override

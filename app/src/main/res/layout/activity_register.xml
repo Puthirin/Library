@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorbar"
+    android:background="@drawable/splash_png"
     tools:context="com.example.puthirin.library.RegisterActivity">
     <TextView
         android:id="@+id/textView3"

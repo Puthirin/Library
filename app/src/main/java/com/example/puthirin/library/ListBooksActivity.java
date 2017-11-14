@@ -65,6 +65,7 @@ public class ListBooksActivity extends AppCompatActivity {
         final ListBooksAdapter listBooksAdapter = new ListBooksAdapter(books);
         listBooks.setAdapter(listBooksAdapter);
 
+
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_get, null, new Response.Listener<JSONObject>() {
             @Override
@@ -95,5 +96,11 @@ public class ListBooksActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        books = new ArrayList<>();
+        super.onBackPressed();
     }
 }

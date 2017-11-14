@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button login,register;
     Intent intent;
     EditText email, password;
-    String Url="http://192.168.0.110:8000/user_login";
+    String Url="http://192.168.100.105:8000/user_login";
     private static final String TAG = "Login";
     ProgressDialog progressDialog;
 
@@ -95,9 +95,6 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    private void hideDialog() {
-        if (progressDialog.isShowing())progressDialog.show();
-    }
     private void showDialog() {
         if (progressDialog.isShowing())progressDialog.dismiss();
     }

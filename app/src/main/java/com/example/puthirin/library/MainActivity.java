@@ -1,5 +1,6 @@
 package com.example.puthirin.library;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
+import android.support.v7.view.menu.MenuView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,17 +46,15 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     TextView text1,text2,text3,text4,more;
     LinearLayout linearLayout;
+    MenuView.ItemView logout;
     MaterialSearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-<<<<<<< HEAD
         final String URL_get = "http://192.168.100.105:8000/book_get";
         final String URL_borrow = "http://192.168.100.105:800/borrow";
-=======
-        final String URL_get = "http://192.168.0.117:8000/book_get";
->>>>>>> 7201df5993d3dd4d0c60e1df9668df6470aa4135
+
         Intent intent = getIntent();
 //        textView.setText("Hello"+intent.getStringExtra(Login.EMAIL));
 
@@ -85,10 +85,12 @@ public class MainActivity extends AppCompatActivity
         layoutInflater.inflate(R.layout.grid_view,null);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        toolbar.setTitleTextColor(Color.parseColor("#fffff"));
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Search Book");
 
-        toolbar.setTitleTextColor(Color.parseColor("#fffff"));
+
+        searchView = (MaterialSearchView)findViewById(R.id.searcch_view);
 
 
 
@@ -171,6 +173,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search,menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(item);
+        return true;
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -195,10 +205,14 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
-
+            logout = (MenuView.ItemView) findViewById(R.id.nav_manage);
+            Intent logout = new Intent(this,LoginActivity.class);
+            logout.setAction(String.valueOf(logout));
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

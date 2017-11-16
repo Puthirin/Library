@@ -8,33 +8,9 @@ class Books {
     private int imageId;
     private String title;
     private String author;
-    private String description;
+    private String category;
     private String year;
 
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public String getCategory() {
-
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    private String category;
-
-    public Books(int imageId, String string, String category, String title, String description) {
-        this.imageId = imageId;
-        this.title = title;
-        this.description = description;
-    }
 
     public int getImageId() {
         return imageId;
@@ -60,21 +36,30 @@ class Books {
         this.author = author;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCategory() {
+        return category;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public Books(int imageId, String title, String author, String description) {
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public Books(int imageId, String title, String category, String author, String year) {
         this.imageId = imageId;
         this.title = title;
-
         this.author = author;
-        this.description = description;
+        this.year = year;
+        this.category = category;
     }
+
 
 
 }

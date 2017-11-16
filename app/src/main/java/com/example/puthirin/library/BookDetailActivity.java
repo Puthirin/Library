@@ -3,7 +3,10 @@ package com.example.puthirin.library;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,8 +25,8 @@ import java.lang.reflect.Method;
 
 public class BookDetailActivity extends AppCompatActivity {
     TextView title,author,type,description;
-    final static String URL_detail="http://192.168.100.105:8000/book_get";
-
+    Button borrow;
+    final String URL_borrow = "http://192.168.0.113:800/borrow";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,26 +39,23 @@ public class BookDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
+//        title.setText(bundle.getString("author"));
         title.setText(bundle.getString("title"));
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//        StringRequest request = new StringRequest(Request.Method.GET, URL_detail, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String s) {
-//                try {
-//                    JSONObject object = new JSONObject(s);
-//                    JSONArray array = object.getJSONArray("data");
-//                    title.setText(Bundle);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError volleyError) {
-//
-//            }
-//        });
+        author.setText(bundle.getString("author"));
+        type.setText(bundle.getString("category"));
+        Toast.makeText(this, bundle.getString("author"), Toast.LENGTH_SHORT).show();
+        borrow = (Button)findViewById(R.id.borrow);
+        
+        borrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submit();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        
+    }
 
-
+    private void submit() {
     }
 }

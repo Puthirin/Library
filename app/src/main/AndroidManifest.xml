@@ -30,9 +30,12 @@
         <activity
             android:name=".LoginActivity"
             android:label="Home" />
-        <activity android:name=".BookDetailActivity" />
+        <activity android:name=".BookDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:label="Book Detail"/>
         <activity android:name=".ListBooksActivity"
             android:label="List Book"
+            android:theme="@style/Theme.AppCompat.Light"
             />
 
     </application>

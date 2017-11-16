@@ -4,28 +4,22 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Setting" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="History" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Notification" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Logout"/>
     </group>
-    <item
-        android:id="@+id/search_bar"
-        android:orderInCategory="100"
-        android:title="search"
-        android:icon="@drawable/ic_search_black_24dp"
-        app:showAsAction="always">
-    </item>
+
 
 
 
